@@ -1,0 +1,6 @@
+export const GOOGLE_SIGNIN = {
+    IN_PROGRESS: 'IN_PROGRESS',
+    SUCCESS: 'SUCCESS',
+    ERROR: 'ERROR',
+    LOGOUT: 'LOGOUT'
+};
