@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Amplify, { Auth, Cache } from 'aws-amplify';
+import { Authenticator } from 'aws-amplify-react-native';
 import {
     ActivityIndicator,
     Alert,
@@ -8,21 +10,23 @@ import {
     Button
   } from 'react-native'
 import { GoogleSignin, GoogleSigninButton, statusCodes } from 'react-native-google-signin';
+import { AmplifyConfig, GoogleConfig }from '../../config/appConfigs';
+
 
 export default class GoogleAuthentication extends Component  {
     state = {
         isSigninInProgress: false,
-        checkingSignedInStatus: true
+        checkingSignedInStatus: true,
+        awsFederatedInfo: {a: 'a'}
     }
 
     constructor(props) {
         super(props);
-        GoogleSignin.configure();
+        // ****** CONFIGURE Google and AWS accounts ******
+        GoogleConfig();
+        AmplifyConfig();
     }
 
-    componentDidMount() {
-        // this.isUserSignedIn();
-    }
 
     // subscribe to 'didFocus' event of react-navigation
     // if user comes back to this component using back button, call this.isUserSignedIn()
@@ -76,15 +80,9 @@ export default class GoogleAuthentication extends Component  {
             // initiate google sign-in process
             await this.getGooglePlayServices();
             const googleAuthResponse = await GoogleSignin.signIn();
-        
-            // below would dispatch GoogleSignIn_onSuccess action in redux
-            this.props.GoogleSignIn_onSuccess({
-                googleUser: googleAuthResponse.user,
-                googleAuthToken: {
-                    id_token: googleAuthResponse.id_token,
-                    expires_at: googleAuthResponse.expires_at
-                }
-            });
+            
+            await this.awsSignIn(googleAuthResponse);
+            this.dispatchOnSignIn(googleAuthResponse);
 
             this.setState({ isSigninInProgress: false });
 
@@ -119,20 +117,40 @@ export default class GoogleAuthentication extends Component  {
     getCurrentUserInfo = async () => {
         try {
             const googleAuthResponse = await GoogleSignin.signInSilently();
-            console.log('user is signed in' + JSON.stringify(googleAuthResponse));
-            this.props.GoogleSignIn_onSuccess({
-                googleAuthToken:{ 
-                    id_token: googleAuthResponse.idToken, 
-                    expires_at: googleAuthResponse.accessTokenExpirationDate
-                },
-                googleUser: googleAuthResponse.user
-            });
+            
+            await this.awsSignIn(googleAuthResponse);
+            this.dispatchOnSignIn(googleAuthResponse);
+            
             this.props.navigation.navigate('Home');
         } catch (error) {
             // if error figuring out whether user is signedIn or not, better reset it to logged out
             this.signOut();
         }
     };
+
+    /**
+     * @name awsSignIn
+     */
+    awsSignIn = async (googleAuthResponse) => {
+        try {
+            const { idToken, accessTokenExpirationDate: expires_at, user : googleUser } = googleAuthResponse;
+            const { email, name } = googleUser;
+
+            const awsFedrtdResponse = await Auth.federatedSignIn('google', {token: idToken, expires_at}, { email });
+        } catch (err) {
+            throw new Error('Error at AWS Authentication');
+        }
+    }
+
+    dispatchOnSignIn = (googleAuthResponse) => {
+        this.props.GoogleSignIn_onSuccess({
+            googleAuthToken:{ 
+                id_token: googleAuthResponse.idToken, 
+                expires_at: googleAuthResponse.accessTokenExpirationDate
+            },
+            googleUser: googleAuthResponse.user
+        });
+    }
 
     /**
      * @name signOut

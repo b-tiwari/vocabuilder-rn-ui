@@ -54,12 +54,18 @@ export default class AppHeader extends Component {
   // whenever this component is loaded(focused), check if an authenticated user is avaible
   // if not, navigate the user back to SignIn screen
   componentFocusSubscription = this.props.navigation.addListener('didFocus', () => {
+    console.log('in componentFocusSubscription of AppHeader');
         if(!this.props.googleUser){
           this.props.navigation.navigate('SignIn');
         }
   });
+  componentDidMount() {
+    console.log('in componentDidMount of AppHeader');
+    this.componentFocusSubscription.remove();
+  }
   componentWillUnmount() {
-      this.componentFocusSubscription.remove();
+    console.log('in componentWillUnmount of AppHeader');
+      // this.componentFocusSubscription.remove();
   }
 }
 

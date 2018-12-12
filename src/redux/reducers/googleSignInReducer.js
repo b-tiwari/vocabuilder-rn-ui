@@ -1,8 +1,9 @@
-import { GOOGLE_SIGNIN } from '../actions/constants';
+import { GOOGLE_SIGNIN } from '../actions/actionTypes';
 
 const defaultState = {
     googleUser: {},
     googleAuthToken: {},
+    awsFederatedInfo: {},
     signInFailedReason: ''
 };
 
@@ -13,6 +14,7 @@ export default function googleSignInReducer(state = defaultState, action) {
         ...state,
         googleUser: action.payload.googleUser,
         googleAuthToken: action.payload.googleAuthToken,
+        awsFederatedInfo: action.payload.awsFederatedInfo
       };
     case GOOGLE_SIGNIN.ERROR:
       return {

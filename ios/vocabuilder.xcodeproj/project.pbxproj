@@ -55,6 +55,8 @@
 		9DE4658821B1C2AF00373951 /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1EC7601FD342C9976E3F50 /* libRNGoogleSignin.a */; };
 		9DE4658A21B1C58F00373951 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9DE4658921B1C58F00373951 /* GoogleService-Info.plist */; };
 		9DE4658B21B1C58F00373951 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9DE4658921B1C58F00373951 /* GoogleService-Info.plist */; };
+		9DE465D221B9E9B200373951 /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9DE465D121B9E9B100373951 /* credentials.plist */; };
+		9DE465D321B9E9B200373951 /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9DE465D121B9E9B100373951 /* credentials.plist */; };
 		AB7553470EF94687928BF734 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDAF0DE0B8564FFF9E0A28DB /* Ionicons.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		C7874DEA28A24787B29CC6FA /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01B162C45995445E830046FF /* FontAwesome.ttf */; };
@@ -398,6 +400,7 @@
 		9DE4657E21B1BFFD00373951 /* GoogleSignInDependencies.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignInDependencies.framework; sourceTree = "<group>"; };
 		9DE4658321B1C04D00373951 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleSignIn.bundle; sourceTree = "<group>"; };
 		9DE4658921B1C58F00373951 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9DE465D121B9E9B100373951 /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
 		AD1EC7601FD342C9976E3F50 /* libRNGoogleSignin.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGoogleSignin.a; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		CDAF0DE0B8564FFF9E0A28DB /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/native-base/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
@@ -548,6 +551,7 @@
 		13B07FAE1A68108700A75B9A /* vocabuilder */ = {
 			isa = PBXGroup;
 			children = (
+				9DE465D121B9E9B100373951 /* credentials.plist */,
 				9DE4658921B1C58F00373951 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -1184,6 +1188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DE4658B21B1C58F00373951 /* GoogleService-Info.plist in Resources */,
+				9DE465D321B9E9B200373951 /* credentials.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1198,6 +1203,7 @@
 				2D019CD7AEF04D93A3B6E492 /* Entypo.ttf in Resources */,
 				2258114AA97341FEB6C3731E /* EvilIcons.ttf in Resources */,
 				CB303562D66A469483DC4C41 /* Feather.ttf in Resources */,
+				9DE465D221B9E9B200373951 /* credentials.plist in Resources */,
 				C7874DEA28A24787B29CC6FA /* FontAwesome.ttf in Resources */,
 				D284B186048B4964943BEAFF /* Foundation.ttf in Resources */,
 				AB7553470EF94687928BF734 /* Ionicons.ttf in Resources */,

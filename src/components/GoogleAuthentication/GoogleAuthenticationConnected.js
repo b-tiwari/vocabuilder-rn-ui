@@ -6,6 +6,7 @@ import {
     GoogleSignIn_logOut
 } from '../../redux/actions/googleSignInActions';
 
+
 const mapStateToProps = state => ({
     googleUser: state.googleSignInReducer.googleUser,
     googleAuthToken: state.googleSignInReducer.googleAuthToken,

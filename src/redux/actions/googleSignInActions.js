@@ -1,4 +1,4 @@
-import { GOOGLE_SIGNIN } from './constants';
+import { GOOGLE_SIGNIN } from './actionTypes';
 
 export const GoogleSignIn_onSuccess = payload => ({
     type: GOOGLE_SIGNIN.SUCCESS,
